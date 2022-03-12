@@ -29,7 +29,7 @@ const QuickStart = () => {
             alignItems: "center",
           }}
         >
-          <h1 style={{ fontSize: "64px", fontWeight: "bold" }}>ZK-Sieve</h1>
+          <h1 style={{ fontSize: "64px", fontWeight: "bold" }}>zk-Sieve</h1>
           <p
             style={{
               fontSize: "32px",
@@ -37,7 +37,7 @@ const QuickStart = () => {
               textAlign: "center",
             }}
           >
-            No more bots in your P2E games with help of ZK-snarks
+            No more bots in your P2E games with help of zk-snarks
           </p>
           <div
             style={{ display: "flex", alignItems: "center", marginTop: "12px" }}
