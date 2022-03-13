@@ -2,6 +2,7 @@
   "name": "ethereum-boilerplate",
   "version": "0.1.0",
   "dependencies": {
+    "0xsequence": "^0.36.7",
     "@ant-design/icons": "^4.7.0",
     "@craco/craco": "^6.4.3",
     "@testing-library/jest-dom": "^5.11.4",

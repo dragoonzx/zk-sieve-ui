@@ -7,7 +7,9 @@ import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
 import Text from "antd/lib/typography/Text";
+import { sequence } from "0xsequence";
 import { connectors } from "./config";
+
 const styles = {
   account: {
     height: "42px",
@@ -41,6 +43,15 @@ const styles = {
     marginBottom: "8px",
     height: "30px",
   },
+  iconS: {
+    alignSelf: "center",
+    fill: "rgb(40, 13, 95)",
+    flexShrink: "0",
+    marginBottom: "8px",
+    height: "30px",
+    background: "rgba(0,0,0,0.5)",
+    padding: "4px",
+  },
 };
 
 function Account() {
@@ -48,6 +59,10 @@ function Account() {
     useMoralis();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
+
+  const [sequenceAccount, setSequenceAccount] = useState();
+
+  console.log(sequenceAccount);
 
   if (!isAuthenticated || !account) {
     return (
@@ -85,15 +100,37 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId });
-                    window.localStorage.setItem("connectorId", connectorId);
+                    if (connectorId === "sequence") {
+                      const wallet = new sequence.Wallet("polygon");
+                      const connectDetails = await wallet.connect({
+                        app: "zk-Sieve",
+                        authorize: true,
+                      });
+
+                      console.log(
+                        "user accepted connect?",
+                        connectDetails.connected,
+                      );
+                      console.log(
+                        "users signed connect proof to valid their account address:",
+                        connectDetails.proof,
+                      );
+                      setSequenceAccount(connectDetails);
+                    } else {
+                      await authenticate({ provider: connectorId });
+                      window.localStorage.setItem("connectorId", connectorId);
+                    }
                     setIsAuthModalVisible(false);
                   } catch (e) {
                     console.error(e);
                   }
                 }}
               >
-                <img src={icon} alt={title} style={styles.icon} />
+                {connectorId === "sequence" ? (
+                  <img src={icon} alt={title} style={styles.iconS} />
+                ) : (
+                  <img src={icon} alt={title} style={styles.icon} />
+                )}
                 <Text style={{ fontSize: "14px" }}>{title}</Text>
               </div>
             ))}

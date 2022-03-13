@@ -5,6 +5,7 @@ import MathWallet from "./WalletIcons/MathWallet.svg";
 import TokenPocket from "!file-loader!./WalletIcons/TokenPocket.svg";
 import SafePal from "!file-loader!./WalletIcons/SafePal.svg";
 import TrustWallet from "./WalletIcons/TrustWallet.png";
+import Sequence from "!file-loader!./WalletIcons/sequence.svg";
 
 export const connectors = [
   {
@@ -47,6 +48,12 @@ export const connectors = [
     title: "Coin98",
     icon: Coin98,
     connectorId: "injected",
+    priority: 999,
+  },
+  {
+    title: "Sequence",
+    icon: Sequence,
+    connectorId: "sequence",
     priority: 999,
   },
 ];

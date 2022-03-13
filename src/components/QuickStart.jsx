@@ -29,7 +29,11 @@ const QuickStart = () => {
             alignItems: "center",
           }}
         >
-          <h1 style={{ fontSize: "64px", fontWeight: "bold" }}>zk-Sieve</h1>
+          <h1
+            style={{ fontSize: "64px", fontWeight: "bold", marginTop: "24px" }}
+          >
+            zk-Sieve
+          </h1>
           <p
             style={{
               fontSize: "32px",
@@ -40,7 +44,7 @@ const QuickStart = () => {
             No more bots in your P2E games with help of zk-snarks
           </p>
           <div
-            style={{ display: "flex", alignItems: "center", marginTop: "12px" }}
+            style={{ display: "flex", alignItems: "center", marginTop: "36px" }}
           >
             <NavLink to="/game">
               <Button type="primary" style={{ marginRight: "8px" }}>
