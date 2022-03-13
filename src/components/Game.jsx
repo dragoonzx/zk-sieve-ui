@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNFTBalances } from "react-moralis";
-import { Button } from "antd";
+import { Button, Modal, Select } from "antd";
 import { FireTwoTone, StarOutlined } from "@ant-design/icons";
+
+const { Option } = Select;
 
 const Game = () => {
   const [adNfts, setAdNfts] = useState(null);
@@ -34,11 +36,20 @@ const Game = () => {
 
   console.log(data);
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isQuestionModalVisible, setIsQuestionModalVisible] = useState(false);
+
   const registerToNFTGame = (collectionAddress, nftId) => {
     if (!selectedNFT) {
       return;
     }
     console.log(collectionAddress, nftId);
+
+    setIsModalVisible(true);
+
+    setTimeout(() => {
+      setIsQuestionModalVisible(true);
+    }, 5000);
   };
 
   return (
@@ -103,7 +114,11 @@ const Game = () => {
                 }}
                 onClick={() => setSelectedNFT(v)}
               >
-                <img src={v.token_uri} style={{ height: "64px" }} alt="" />
+                <img
+                  src={v.metadata?.image}
+                  style={{ height: "64px" }}
+                  alt=""
+                />
                 <p>{v.name}</p>
                 {selectedNFT &&
                 activeTokenId === v.token_address + v.token_id ? (
@@ -124,6 +139,60 @@ const Game = () => {
         >
           Start fight
         </Button>
+
+        <Modal
+          title="Fight!!!"
+          centered
+          visible={isModalVisible}
+          onOk={() => setIsModalVisible(false)}
+          onCancel={() => setIsModalVisible(false)}
+          footer={null}
+        >
+          <iframe
+            src="https://giphy.com/embed/l0Iy87qFTu0gDegw0"
+            width="480"
+            height="265"
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
+        </Modal>
+        <Modal
+          title="Web3 Captcha"
+          centered
+          visible={isQuestionModalVisible}
+          onOk={() => setIsModalVisible(false)}
+          onCancel={() => setIsModalVisible(false)}
+          footer={[
+            <Button
+              key="submit"
+              type="primary"
+              onClick={() => {
+                setIsModalVisible(false);
+                setIsQuestionModalVisible(false);
+              }}
+            >
+              Submit
+            </Button>,
+          ]}
+        >
+          <div>
+            <p style={{ fontSize: "19px", fontWeight: "bold" }}>Question: </p>
+          </div>
+          <div style={{ marginTop: "28px" }}>
+            <p style={{ fontSize: "19px", fontWeight: "bold" }}>
+              Your answer:{" "}
+            </p>
+            <Select
+              defaultValue="Answer A"
+              style={{ width: 120, marginTop: "12px" }}
+            >
+              <Option value="A">Answer A</Option>
+              <Option value="B">Answer B</Option>
+              <Option value="C">Answer C</Option>
+              <Option value="D">Answer D</Option>
+            </Select>
+          </div>
+        </Modal>
       </div>
     </div>
   );
