@@ -177,8 +177,9 @@ const Game = () => {
         >
           <div>
             <p style={{ fontSize: "19px", fontWeight: "bold" }}>Question: </p>
+            <p>What`s going on the gif?</p>
           </div>
-          <div style={{ marginTop: "28px" }}>
+          <div style={{ marginTop: "16px" }}>
             <p style={{ fontSize: "19px", fontWeight: "bold" }}>
               Your answer:{" "}
             </p>
@@ -186,10 +187,10 @@ const Game = () => {
               defaultValue="Answer A"
               style={{ width: 120, marginTop: "12px" }}
             >
-              <Option value="A">Answer A</Option>
-              <Option value="B">Answer B</Option>
-              <Option value="C">Answer C</Option>
-              <Option value="D">Answer D</Option>
+              <Option value="A">Cooking</Option>
+              <Option value="B">Baking</Option>
+              <Option value="C">Fighting</Option>
+              <Option value="D">Giggling</Option>
             </Select>
           </div>
         </Modal>
